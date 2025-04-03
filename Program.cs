@@ -49,21 +49,17 @@ namespace Chatbot
         }
         static void Image()
         {
-            string asciiLogo = @"
-  ____ _                 _     _____ _           _   
- / ___| | ___   ___   __| | __|_   _| |__   __ _| |_ 
-| |   | |/ _ \ / _ \ / _` |/ _ \| | | '_ \ / _` | __|
-| |___| | (_) | (_) | (_| |  __/| | | | | | (_| | |_ 
- \____|_|\___/ \___/ \__,_|\___| |_| |_| |_|\__,_|\__|
-                                                     
-             ____ _           _     
-            / ___| |__   __ _| |_   
-           | |   | '_ \ / _` | __|  
-           | |___| | | | (_| | |_   
-            \____|_| |_|\__,_|\__|  
-             ";
 
+            string asciiLogo = @"
+                    
+  ___ __ ____ ____    ____ _  _  __ ____     ___ _  _  __ ____ 
+ / __/  (    (  __)  (_  _/ )( \/ _(_  _)   / __/ )( \/ _(_  _)
+( (_(  O ) D () _)     )( ) __ /    \)(    ( (__) __ /    \)(  
+ \___\__(____(____)   (__)\_)(_\_/\_(__)    \___\_)(_\_/\_(__) 
+";
+            Console.WriteLine("------------------------------------------------------------------------------------------");
             Console.WriteLine(asciiLogo);
+            Console.WriteLine("------------------------------------------------------------------------------------------");
 
             Console.WriteLine("Welcome to the Cyber Chatbot!");
         }
@@ -109,5 +105,47 @@ namespace Chatbot
             }
         }
 
+    }
+}
+//// Create a new instance of SpeechSynthesizer to use for text-to-speech functionality
+var SpeechSyn = new SpeechSynthesizer();
+
+// Use the SpeechSynthesizer to say a greeting message to the user
+SpeechSyn.Speak("Hello! Welcome to the cyber awareness Bot. I'm here to help you stay safe online.");
+
+// Ask the user for their name and store the input
+Console.WriteLine("What is your name?");
+String Name = Console.ReadLine();  // Read user input and store it in the variable 'Name'
+
+// Prompt the user to ask a question or type 'exit' to end the conversation
+Console.Write("Ask me a question " + Name);
+Console.WriteLine(" or type exit to end the chat");
+
+// Read the user's input (the question or command) and store it in the 'Input' variable
+String Input = Console.ReadLine();
+
+// Start an infinite loop to keep the conversation going until 'exit' is typed
+while (true)
+{
+    // Read and process the user's input: convert it to lowercase and remove extra spaces
+    Input = Console.ReadLine().ToLower().Trim();
+
+    // If the user types 'exit', print a goodbye message and break the loop to end the program
+    if (Input == "exit")
+    {
+        Console.WriteLine("Exiting... Goodbye!");
+        break;  // Exit the loop and end the program
+    }
+
+    // If the user provided a valid input (not null), process the input by calling the Speech method
+    if (Input != null)
+    {
+        Speech(Input, Name);  // Assuming the Speech method will process the input and speak it
+    }
+    else
+    {
+        // If the input is null (empty or invalid input), prompt the user again
+        Console.WriteLine("Sorry, I didn't catch that. Could you please enter something " + Name);
+        break;  // End the loop if no valid input was entered
     }
 }
